@@ -2,14 +2,8 @@
 	"name": "Sink_DataPrep_DS",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "StorageLS",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"StorageName": {
-					"value": "@dataset().StorageName",
-					"type": "Expression"
-				}
-			}
+			"referenceName": "hacklinkedservice",
+			"type": "LinkedServiceReference"
 		},
 		"parameters": {
 			"StorageName": {
