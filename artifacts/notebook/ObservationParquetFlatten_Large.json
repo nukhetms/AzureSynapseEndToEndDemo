@@ -7,7 +7,7 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "healthcare",
+			"referenceName": "synapseinsidpol",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
@@ -15,12 +15,12 @@
 			"driverCores": 16,
 			"executorMemory": "112g",
 			"executorCores": 16,
-			"numExecutors": 4,
+			"numExecutors": 2,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "false",
-				"spark.dynamicAllocation.minExecutors": "4",
-				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "0ff2572c-9472-4bb0-980c-22f1e1f08db5"
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "8c65586d-2733-4e78-a4a4-e591c829f69f"
 			}
 		},
 		"metadata": {
@@ -34,16 +34,16 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/7e416de3-c506-4776-8270-83fd73c6cc37/resourceGroups/syne2e/providers/Microsoft.Synapse/workspaces/health/bigDataPools/healthcare",
-				"name": "healthcare",
+				"id": "/subscriptions/a4c9577a-10ea-48d1-b7f5-d95279db70d6/resourceGroups/synapseinsiderrgnk/providers/Microsoft.Synapse/workspaces/synapseinsiderws/bigDataPools/synapseinsidpol",
+				"name": "synapseinsidpol",
 				"type": "Spark",
-				"endpoint": "https://health.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/healthcare",
+				"endpoint": "https://synapseinsiderws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/synapseinsidpol",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "3.1",
-				"nodeCount": 3,
+				"nodeCount": 5,
 				"cores": 16,
 				"memory": 112,
 				"automaticScaleJobs": false
@@ -68,10 +68,10 @@
 					]
 				},
 				"source": [
-					"StorageName = \"medicaldl\"\r\n",
+					"StorageName = \"nukhetretailaidata\"\r\n",
 					"DatasetSize = \"1tb\""
 				],
-				"execution_count": null
+				"execution_count": 1
 			},
 			{
 				"cell_type": "code",
@@ -80,7 +80,7 @@
 					"processed_location = \"abfss://processed@\"+StorageName+\".dfs.core.windows.net/fhir/\"+DatasetSize+\"/\"\r\n",
 					"write_mode=\"overwrite\""
 				],
-				"execution_count": 1
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
@@ -98,14 +98,14 @@
 				"source": [
 					"Observation_df=spark.read.parquet(processed_location+\"Observation/\")"
 				],
-				"execution_count": 2
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
 				"metadata": {
 					"jupyter": {
 						"source_hidden": false,
-						"outputs_hidden": true
+						"outputs_hidden": false
 					},
 					"nteract": {
 						"transient": {
@@ -115,9 +115,9 @@
 					"collapsed": false
 				},
 				"source": [
-					"#display(Observation_df.limit(10))"
+					"display(Observation_df.limit(10))"
 				],
-				"execution_count": 3
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -140,14 +140,14 @@
 					"Observation_df=Observation_df.withColumnRenamed(\"subject\",\"patient_id_reference\")\r\n",
 					"Observation_df=Observation_df.withColumnRenamed(\"encounter\",\"encounter_id_reference\")"
 				],
-				"execution_count": 3
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
 				"metadata": {
 					"jupyter": {
 						"source_hidden": false,
-						"outputs_hidden": true
+						"outputs_hidden": false
 					},
 					"nteract": {
 						"transient": {
@@ -183,7 +183,7 @@
 					"    \"valueQuantity_code\",\"valueQuantity_system\",\r\n",
 					"    \"valueQuantity_unit\",\"valueQuantity_value\",\"valueString\"))"
 				],
-				"execution_count": 8
+				"execution_count": 7
 			},
 			{
 				"cell_type": "code",
@@ -203,7 +203,7 @@
 					"#Observation_main_df.write.format(\"delta\").saveAsTable(\"fhirlakedb.Observation_main\")\r\n",
 					"#Patient_identifier_df.write.format(\"delta\").save(curated_location+\"Condition_clinicalStatus_delta/\")"
 				],
-				"execution_count": 9
+				"execution_count": 8
 			},
 			{
 				"cell_type": "code",
@@ -231,7 +231,7 @@
 					"\r\n",
 					"Observation_category_df = Observation_category_explode2_df.select(\"Observation_id\",\"category.*\").toDF(*(\"Observation_id\",\"category_code\",\"category_display\",\"category_system\"))"
 				],
-				"execution_count": 10
+				"execution_count": 9
 			},
 			{
 				"cell_type": "code",
@@ -249,7 +249,7 @@
 				"source": [
 					"Observation_category_df.write.mode(write_mode).parquet(curated_location+\"Observation_category/\")"
 				],
-				"execution_count": 13
+				"execution_count": 10
 			},
 			{
 				"cell_type": "code",
@@ -271,7 +271,7 @@
 					"    \"Observation_id\",\"code.text\",explode(Observation_df.code.coding)).toDF(*(\"Observation_id\",\"text\",\"coding\"))\r\n",
 					"Observation_code_df = Observation_code_explode_df.select(\"Observation_id\",\"text\",\"coding.*\").toDF(*(\"Observation_id\",\"code_text\",\"coding_code\",\"coding_display\",\"coding_system\"))  "
 				],
-				"execution_count": 15
+				"execution_count": 11
 			},
 			{
 				"cell_type": "code",
@@ -289,7 +289,7 @@
 				"source": [
 					"Observation_code_df.write.mode(write_mode).parquet(curated_location+\"Observation_code/\")"
 				],
-				"execution_count": 16
+				"execution_count": 12
 			},
 			{
 				"cell_type": "code",
@@ -320,7 +320,7 @@
 					"    \"component_display\",\"component_system\",\"component_text\",\r\n",
 					"    \"component_valueQuantity_code\",\"component_valueQuantity_system\",\"component_valueQuantity_unit\",\"component_valueQuantity_value\"))"
 				],
-				"execution_count": 4
+				"execution_count": 13
 			},
 			{
 				"cell_type": "code",
@@ -338,7 +338,7 @@
 				"source": [
 					"Observation_component_df.write.mode(write_mode).parquet(curated_location+\"Observation_component/\")"
 				],
-				"execution_count": 7
+				"execution_count": 14
 			},
 			{
 				"cell_type": "code",
@@ -362,7 +362,7 @@
 					"Observation_valueCodeableConcept_df = Observation_valueCodeableConcept_explode_df.select(\"Observation_id\",\"coding.*\",\"valueCodeableConcept_text\").toDF(*(\"Observation_id\",\r\n",
 					"    \"valueCodeableConcept_code\", \"valueCodeableConcept_display\",\"valueCodeableConcept_system\",\"valueCodeableConcept_text\"))"
 				],
-				"execution_count": 22
+				"execution_count": 15
 			},
 			{
 				"cell_type": "code",
@@ -380,7 +380,44 @@
 				"source": [
 					"Observation_valueCodeableConcept_df.write.mode(write_mode).parquet(curated_location+\"Observation_valueCodeableConcept/\")"
 				],
-				"execution_count": 26
+				"execution_count": 16
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"display(Observation_valueCodeableConcept_df.limit(10))"
+				],
+				"execution_count": 18
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				],
+				"execution_count": null
 			}
 		]
 	}
