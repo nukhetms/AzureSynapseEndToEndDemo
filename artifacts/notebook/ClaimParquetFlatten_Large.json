@@ -7,20 +7,20 @@
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
-			"referenceName": "healthcare",
+			"referenceName": "synapseinsidpol",
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "112g",
-			"driverCores": 16,
-			"executorMemory": "112g",
-			"executorCores": 16,
-			"numExecutors": 4,
+			"driverMemory": "400g",
+			"driverCores": 64,
+			"executorMemory": "400g",
+			"executorCores": 64,
+			"numExecutors": 2,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "false",
-				"spark.dynamicAllocation.minExecutors": "4",
-				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "f6bbd8e2-1229-423c-bf5f-0432650ae015"
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "03de7f8c-4fd8-4eb2-abb7-5fade34f2a37"
 			}
 		},
 		"metadata": {
@@ -34,18 +34,18 @@
 				"name": "python"
 			},
 			"a365ComputeOptions": {
-				"id": "/subscriptions/7e416de3-c506-4776-8270-83fd73c6cc37/resourceGroups/syne2e/providers/Microsoft.Synapse/workspaces/health/bigDataPools/healthcare",
-				"name": "healthcare",
+				"id": "/subscriptions/a4c9577a-10ea-48d1-b7f5-d95279db70d6/resourceGroups/synapseinsiderrgnk/providers/Microsoft.Synapse/workspaces/synapseinsiderws/bigDataPools/synapseinsidpol",
+				"name": "synapseinsidpol",
 				"type": "Spark",
-				"endpoint": "https://health.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/healthcare",
+				"endpoint": "https://synapseinsiderws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/synapseinsidpol",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
 				},
 				"sparkVersion": "3.1",
-				"nodeCount": 3,
-				"cores": 16,
-				"memory": 112,
+				"nodeCount": 5,
+				"cores": 64,
+				"memory": 400,
 				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 180
@@ -59,10 +59,10 @@
 					]
 				},
 				"source": [
-					"StorageName = \"medicaldl\"\r\n",
+					"StorageName = \"nukhetretailaidata\"\r\n",
 					"DatasetSize = \"1tb\""
 				],
-				"execution_count": 1
+				"execution_count": 2
 			},
 			{
 				"cell_type": "code",
@@ -82,7 +82,7 @@
 					"processed_location = \"abfss://processed@\" + StorageName + \".dfs.core.windows.net/fhir/\"+ DatasetSize +\"/\"\r\n",
 					"write_mode=\"overwrite\""
 				],
-				"execution_count": null
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -100,7 +100,7 @@
 				"source": [
 					"Claim_df=spark.read.parquet(processed_location+\"Claim/\")"
 				],
-				"execution_count": 2
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -119,7 +119,7 @@
 				"source": [
 					"display(Claim_df.limit(10))"
 				],
-				"execution_count": 3
+				"execution_count": 5
 			},
 			{
 				"cell_type": "code",
@@ -137,7 +137,7 @@
 				"source": [
 					"Claim_df.printSchema()"
 				],
-				"execution_count": 4
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -173,7 +173,7 @@
 					"# adding schema optimization\r\n",
 					"# Arshad"
 				],
-				"execution_count": 5
+				"execution_count": 7
 			},
 			{
 				"cell_type": "code",
@@ -191,7 +191,7 @@
 				"source": [
 					"Claim_main_df.printSchema()"
 				],
-				"execution_count": 6
+				"execution_count": 8
 			},
 			{
 				"cell_type": "code",
@@ -210,7 +210,7 @@
 				"source": [
 					"display(Claim_main_df.limit(10))"
 				],
-				"execution_count": 7
+				"execution_count": 9
 			},
 			{
 				"cell_type": "code",
@@ -228,7 +228,7 @@
 				"source": [
 					"Claim_main_df.count()"
 				],
-				"execution_count": 8
+				"execution_count": 10
 			},
 			{
 				"cell_type": "code",
@@ -276,7 +276,7 @@
 					"\r\n",
 					"#    base_df_explode = base_df.select(explode(base_df.entry))"
 				],
-				"execution_count": 9
+				"execution_count": 11
 			},
 			{
 				"cell_type": "code",
@@ -294,7 +294,7 @@
 				"source": [
 					"Claim_insurance_df.printSchema()"
 				],
-				"execution_count": 10
+				"execution_count": 12
 			},
 			{
 				"cell_type": "code",
@@ -313,7 +313,7 @@
 				"source": [
 					"display(Claim_insurance_df.limit(10))"
 				],
-				"execution_count": 11
+				"execution_count": 13
 			},
 			{
 				"cell_type": "code",
@@ -331,7 +331,7 @@
 				"source": [
 					"Claim_insurance_df.count()"
 				],
-				"execution_count": 12
+				"execution_count": 14
 			},
 			{
 				"cell_type": "code",
@@ -349,7 +349,7 @@
 				"source": [
 					"Claim_insurance_df.write.mode(write_mode).parquet(curated_location+\"Claim_insurance/\")"
 				],
-				"execution_count": 17
+				"execution_count": 15
 			},
 			{
 				"cell_type": "code",
@@ -381,7 +381,7 @@
 					"Claim_diagnosis_df=Claim_diagnosis_df.withColumn(\r\n",
 					"    \"diagnosis_reference\",regexp_replace(\"diagnosis_reference\",\"Condition/\",\"\"))    "
 				],
-				"execution_count": 3
+				"execution_count": 16
 			},
 			{
 				"cell_type": "code",
@@ -399,7 +399,7 @@
 				"source": [
 					"Claim_diagnosis_df.printSchema()"
 				],
-				"execution_count": 20
+				"execution_count": 17
 			},
 			{
 				"cell_type": "code",
@@ -417,7 +417,7 @@
 				"source": [
 					"Claim_diagnosis_df.write.mode(write_mode).parquet(curated_location+\"Claim_diagnosis/\")"
 				],
-				"execution_count": 4
+				"execution_count": 18
 			},
 			{
 				"cell_type": "code",
@@ -447,7 +447,7 @@
 					"    \"Claim_id\",\"procedure_reference\",\"procedure_sequence\"))\r\n",
 					"Claim_procedure_df=Claim_procedure_df.withColumn(\"procedure_reference\",regexp_replace(\"procedure_reference\",\"Procedure/\",\"\"))"
 				],
-				"execution_count": 3
+				"execution_count": 19
 			},
 			{
 				"cell_type": "code",
@@ -466,7 +466,7 @@
 				"source": [
 					"display(Claim_procedure_df.limit(10))"
 				],
-				"execution_count": 4
+				"execution_count": 20
 			},
 			{
 				"cell_type": "code",
@@ -484,7 +484,7 @@
 				"source": [
 					"Claim_procedure_df.write.mode(write_mode).parquet(curated_location+\"Claim_procedure/\")"
 				],
-				"execution_count": 5
+				"execution_count": 21
 			},
 			{
 				"cell_type": "code",

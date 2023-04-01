@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "e9776dd3-44f9-4e59-9457-c102ba37738b"
+				"spark.autotune.trackingId": "d979bb57-3037-4de4-8d8b-08ca9068c8cb"
 			}
 		},
 		"metadata": {
@@ -71,7 +71,7 @@
 					"StorageName = \"nukhetretailaidata\"\r\n",
 					"DatasetSize = \"1tb\""
 				],
-				"execution_count": 2
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -86,7 +86,7 @@
 					"DROP DATABASE IF EXISTS fhirdbexploration CASCADE;\r\n",
 					"CREATE DATABASE fhirdbexploration;"
 				],
-				"execution_count": 20
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
