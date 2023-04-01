@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "9128a718-e68b-4874-ac08-a58f04d5507c"
+				"spark.autotune.trackingId": "056fa4c1-ec0e-4f4f-bc8f-3a00bc21118c"
 			}
 		},
 		"metadata": {
@@ -44,8 +44,8 @@
 				},
 				"sparkVersion": "3.1",
 				"nodeCount": 5,
-				"cores": 8,
-				"memory": 56,
+				"cores": 64,
+				"memory": 400,
 				"automaticScaleJobs": false
 			},
 			"sessionKeepAliveTimeout": 30
@@ -59,7 +59,7 @@
 					]
 				},
 				"source": [
-					"StorageName = \"medicaldl\"\r\n",
+					"StorageName = \"nukhetretailaidata\"\r\n",
 					"DatasetSize = \"1tb\""
 				],
 				"execution_count": 1
@@ -100,7 +100,7 @@
 				"source": [
 					"Claim_df = spark.read.option(\"multiline\", \"true\").json(raw_location+\"Claim.ndjson\")"
 				],
-				"execution_count": 8
+				"execution_count": 4
 			},
 			{
 				"cell_type": "code",
@@ -122,6 +122,61 @@
 					"#Claim_df.count()"
 				],
 				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"display(Claim_df.limit(10))"
+				],
+				"execution_count": 6
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"Claim_df.count()"
+				],
+				"execution_count": 7
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				],
+				"execution_count": null
 			}
 		]
 	}
