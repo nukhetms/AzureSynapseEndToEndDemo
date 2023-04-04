@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 3",
+	"properties": {
+		"content": {
+			"query": "-- This is auto-generated code\nCREATE EXTERNAL TABLE Observationdw AS \n    SELECT *\nFROM\n    OPENROWSET(\n        BULK 'https://nukhetretailaidata.dfs.core.windows.net/curated/fhir/logicalDW/Claim_main_parquet/part-00000-590fdeeb-f79b-45fd-b91f-10e82e75ef65-c000.snappy.parquet',\n        FORMAT = 'PARQUET'\n    ) \n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synapseinsidepnk",
+				"poolName": "synapseinsidepnk"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
