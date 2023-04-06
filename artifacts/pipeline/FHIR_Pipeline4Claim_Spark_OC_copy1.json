@@ -241,55 +241,6 @@
 						}
 					}
 				]
-			},
-			{
-				"name": "LakeDatabase And Table Creation",
-				"type": "SynapseNotebook",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"notebook": {
-						"referenceName": "Lake Database And Table Creation",
-						"type": "NotebookReference"
-					},
-					"parameters": {
-						"StorageName": {
-							"value": {
-								"value": "@pipeline().parameters.StorageName",
-								"type": "Expression"
-							},
-							"type": "string"
-						},
-						"DatasetSize": {
-							"value": {
-								"value": "@pipeline().parameters.DatasetSize",
-								"type": "Expression"
-							},
-							"type": "string"
-						}
-					},
-					"snapshot": true,
-					"sparkPool": {
-						"referenceName": {
-							"value": "@pipeline().parameters.SparkPoolName",
-							"type": "Expression"
-						},
-						"type": "BigDataPoolReference"
-					},
-					"conf": {
-						"spark.dynamicAllocation.enabled": null,
-						"spark.dynamicAllocation.minExecutors": null,
-						"spark.dynamicAllocation.maxExecutors": null
-					},
-					"numExecutors": null
-				}
 			}
 		],
 		"parameters": {
