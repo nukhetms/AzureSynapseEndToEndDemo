@@ -2,7 +2,7 @@
 	"name": "SQL script 6",
 	"properties": {
 		"content": {
-			"query": "SELECT TOP (100) [patient_id]\n,[birthDate]\n,[deceasedDateTime]\n,[gender]\n,[text]\n,[multipleBirthBoolean]\n,[multipleBirthInteger]\n,[resourceType]\n,[div]\n,[status]\n,[identifier.system]\n,[identifier.type.coding.code]\n,[identifier.type.coding.display]\n,[identifier.type.coding.system]\n,[identifier.type.text]\n,[identifier.value]\n FROM [fhir].[PatientIdentifier]\n   AND c.year > 2020",
+			"query": "SELECT TOP (100) [patient_id]\n,[birthDate]\n,[deceasedDateTime]\n,[gender]\n,[text]\n,[multipleBirthBoolean]\n,[multipleBirthInteger]\n,[resourceType]\n,[div]\n,[status]\n,[identifier.system]\n,[identifier.type.coding.code]\n,[identifier.type.coding.display]\n,[identifier.type.coding.system]\n,[identifier.type.text]\n,[identifier.value]\n FROM [fhir].[PatientIdentifier]\n",
 			"metadata": {
 				"language": "sql"
 			},
