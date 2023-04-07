@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 10",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [Claim_id]\n,[insurance_coverage.display]\n,[insurance_focal]\n,[insurance_sequence]\n FROM [fhir].[ClaimInsurance]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synapseinsidepnk",
+				"poolName": "synapseinsidepnk"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

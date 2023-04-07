@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 9",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [Claim_id]\n,[procedure_reference]\n,[procedure_sequence]\n FROM [fhir].[ClaimProcedure]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synapseinsidepnk",
+				"poolName": "synapseinsidepnk"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

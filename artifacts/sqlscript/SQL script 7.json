@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 7",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [Claim_id]\n,[diagnosis_reference]\n,[diagnosis_sequence]\n FROM [fhir].[ClaimDiagnosis]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synapseinsidepnk",
+				"poolName": "synapseinsidepnk"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
