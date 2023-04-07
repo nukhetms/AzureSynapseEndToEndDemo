@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 5",
+	"properties": {
+		"content": {
+			"query": "SELECT\n  p.patient_id AS patient_id,\n  COUNT(*) AS count_claims\nFROM\n  [fhir].[ObservationMain] c\n  INNER JOIN [fhir].[PatientIdentifier] p\n    ON c.patient_id_reference = p.patient_id\nWHERE\n  p.gender = 'Male'\n  AND CAST(p.birthDate AS date) > '2003-02-17'\n  AND CAST(p.birthDate AS date) > '1996-02-17'\nGROUP BY\n  p.patient_id",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synapseinsidepnk",
+				"poolName": "synapseinsidepnk"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
