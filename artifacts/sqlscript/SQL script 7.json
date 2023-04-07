@@ -2,7 +2,7 @@
 	"name": "SQL script 7",
 	"properties": {
 		"content": {
-			"query": "SELECT TOP (100) [Observation_id]\n,[resourceType]\n,[issued]\n,[status]\n,[patient_id_reference]\n,[encounter_id_reference]\n,[effectiveDateTime]\n,[valueQuantity_code]\n,[valueQuantity_system]\n,[valueQuantity_unit]\n,[valueQuantity_value]\n,[valueString]\n FROM [fhir].[ObservationMain]",
+			"query": "\n\n\n",
 			"metadata": {
 				"language": "sql"
 			},
