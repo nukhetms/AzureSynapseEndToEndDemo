@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 11",
+	"properties": {
+		"content": {
+			"query": "SELECT\n  p.id AS patient_id,\n  COUNT(c.*) AS count_claims\nFROM\n  claims c\n  INNER JOIN patient p\n    ON c.patient_id = p.id\nWHERE\n  p.gender = 'Male'\n  AND p.dob > 18 AND p.dob < 25\n  AND c.year > 2020\nGROUP BY\n  p.id",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synapseinsidepnk",
+				"poolName": "synapseinsidepnk"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
