@@ -102,7 +102,7 @@
 			},
 			"DatasetSize": {
 				"type": "string",
-				"defaultValue": "1tb"
+				"defaultValue": "30tbCurated"
 			}
 		},
 		"folder": {
