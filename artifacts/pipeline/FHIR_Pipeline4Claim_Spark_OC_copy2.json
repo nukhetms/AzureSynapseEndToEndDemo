@@ -19,12 +19,7 @@
 						"type": "ParquetSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"wildcardFolderPath": {
-								"value": "@concat('fhir/',pipeline().parameters.DatasetSize,'/Claim_diagnosis')",
-								"type": "Expression"
-							},
-							"wildcardFileName": "*.parquet",
+							"fileListPath": "curated/fhir/30tbCurated/Claim_diagnosis",
 							"enablePartitionDiscovery": false
 						}
 					},
