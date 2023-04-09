@@ -59,7 +59,7 @@
 								"type": "Expression"
 							},
 							"FolderPath": {
-								"value": "@concat('fhir/',pipeline().parameters.DatasetSize,'/Claim_diagnosis')",
+								"value": "@concat('fhir/',pipeline().parameters.DatasetSize,'/Observation_component')",
 								"type": "Expression"
 							}
 						}
