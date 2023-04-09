@@ -2,7 +2,7 @@
 	"name": "first query joint script",
 	"properties": {
 		"content": {
-			"query": "SELECT\n  p.patient_id AS patient_id, YEAR(CAST(p.birthDate AS date)) as year,\n  COUNT(*) AS count_claims\nFROM\n  [fhir].[claims_main] c\n  INNER JOIN [fhir].[PatientIdentifier] p\n    ON c.patient_id_reference = p.patient_id\nWHERE\n  p.gender = 'Male'\n  AND YEAR(CAST(p.birthDate AS date)) > 2005\n  AND YEAR(CAST(p.birthDate AS date)) < 1998\n  AND YEAR(CAST(c.created AS date)) > 2020\nGROUP BY\n  p.patient_id,\n  YEAR(CAST(p.birthDate AS date));",
+			"query": "SELECT\n  p.patient_id AS patient_id, YEAR(CAST(p.birthDate AS date)) as year,\n  COUNT(*) AS count_claims\nFROM\n  [fhir].[claims_main] c\n  INNER JOIN [fhir].[PatientIdentifier] p\n    ON c.patient_id_reference = p.patient_id\nWHERE\n  p.gender = 'Male'\n  AND (YEAR(CAST(p.birthDate AS date)) < 2005 AND YEAR(CAST(p.birthDate AS date)) > 1998)\n  AND YEAR(CAST(c.created AS date)) > 2020\nGROUP BY\n  p.patient_id,\n  YEAR(CAST(p.birthDate AS date));",
 			"metadata": {
 				"language": "sql"
 			},
