@@ -1,0 +1,113 @@
+{
+	"name": "FHIR_Pipeline4Claim_Spark_OC_Observation_component",
+	"properties": {
+		"activities": [
+			{
+				"name": "Observation_component",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": {
+								"value": "@concat('fhir/',pipeline().parameters.DatasetSize,'/Observation_component')",
+								"type": "Expression"
+							},
+							"wildcardFileName": "*.parquet",
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "StorageLS",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"StorageName": {
+									"value": "@pipeline().parameters.StorageName",
+									"type": "Expression"
+								}
+							}
+						},
+						"path": "staging"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ClaimDiagnosisParquetLarge",
+						"type": "DatasetReference",
+						"parameters": {
+							"StorageName": {
+								"value": "@pipeline().parameters.StorageName",
+								"type": "Expression"
+							},
+							"FolderPath": {
+								"value": "@concat('fhir/',pipeline().parameters.DatasetSize,'/Claim_diagnosis')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ClaimDiagnosisSQL",
+						"type": "DatasetReference",
+						"parameters": {
+							"DatabaseName": {
+								"value": "@pipeline().parameters.DatabaseName",
+								"type": "Expression"
+							},
+							"ServerName": {
+								"value": "@pipeline().parameters.ServerName",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"StorageName": {
+				"type": "string",
+				"defaultValue": "synapsee2elake"
+			},
+			"DatabaseName": {
+				"type": "string",
+				"defaultValue": "synapsee2edw"
+			},
+			"ServerName": {
+				"type": "string",
+				"defaultValue": "synapsee2e"
+			},
+			"SparkPoolName": {
+				"type": "string",
+				"defaultValue": "synapsee2espark"
+			},
+			"DatasetSize": {
+				"type": "string",
+				"defaultValue": "1tb"
+			}
+		},
+		"folder": {
+			"name": "Claims"
+		},
+		"annotations": []
+	}
+}
