@@ -21,7 +21,7 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"wildcardFolderPath": {
-								"value": "@concat('fhir/',pipeline().parameters.DatasetSize,'/Claim_main')",
+								"value": "@concat('fhir/',pipeline().parameters.DatasetSize,'/Observation_category')",
 								"type": "Expression"
 							},
 							"wildcardFileName": "*.parquet",
