@@ -1,5 +1,5 @@
 {
-	"name": "FHIR_Pipeline4Claim_Spark_OC_copy3",
+	"name": "FHIR_Pipeline4Claim_Spark_claims_main",
 	"properties": {
 		"activities": [
 			{
