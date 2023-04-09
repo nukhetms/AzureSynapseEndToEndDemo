@@ -24,7 +24,7 @@
 								"value": "@concat('fhir/',pipeline().parameters.DatasetSize,'/Observation_component')",
 								"type": "Expression"
 							},
-							"wildcardFileName": "*.parquet",
+							"wildcardFileName": "part-00000-bb53b989-075e-4e02-9d24-1ac8b9d87c77-c000.snappy.parquet",
 							"enablePartitionDiscovery": false
 						}
 					},
