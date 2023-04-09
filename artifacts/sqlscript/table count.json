@@ -1,5 +1,5 @@
 {
-	"name": "SQL script 11",
+	"name": "table count",
 	"properties": {
 		"content": {
 			"query": "SELECT count (1) from fhir.Observation_component;",
