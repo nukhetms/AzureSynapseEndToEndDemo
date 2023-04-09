@@ -1,5 +1,5 @@
 {
-	"name": "SQL script 4",
+	"name": "update stats",
 	"properties": {
 		"content": {
 			"query": "--UPDATE STATISTICS fhir.PatientIdentifier;\n\n--UPDATE STATISTICS fhir.claims_main;\n\n--UPDATE STATISTICS fhir.ClaimDiagnosis;\n\n--UPDATE STATISTICS fhir.ClaimInsurance;\n\n--UPDATE STATISTICS fhir.ClaimProcedure;\n\nUPDATE STATISTICS fhir.ObservationMain;",

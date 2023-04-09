@@ -1,5 +1,5 @@
 {
-	"name": "SQL script 2",
+	"name": "count parquet files",
 	"properties": {
 		"content": {
 			"query": "-- This is auto-generated code\nSELECT\n    count (1)\nFROM\n    OPENROWSET(\n        BULK 'https://nukhetretailaidata.dfs.core.windows.net/curated/fhir/30tbCurated/Observation_main/part-00000-c1e2d7d7-0e26-4c63-bc83-faa338ba1979-c000.snappy.parquet',\n        FORMAT = 'PARQUET'\n    ) AS [result];\n",
