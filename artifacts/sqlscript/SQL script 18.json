@@ -1,5 +1,5 @@
 {
-	"name": "SQL script 12",
+	"name": "SQL script 18",
 	"properties": {
 		"content": {
 			"query": "SELECT TOP (100) [Observation_id]\n,[category_code]\n,[category_display]\n,[category_system]\n FROM [fhir].[observation_category]",

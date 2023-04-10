@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 15",
+	"properties": {
+		"content": {
+			"query": "SELECT count (1) from fhir.Observation_component;\n--23311023\nSELECT count (1) from fhir.ClaimDiagnosis;\n--224160516\nSELECT count (1) from fhir.ClaimInsurance;\n--1661000961\nSELECT count (1) from fhir.ClaimProcedure;\n--601055207\nSELECT count (1) from fhir.claims_main;\n--1661000961\nSELECT count (1) from [fhir].[ObservationMain];\n\nSELECT count (1) from fhir.PatientAddress;\n--27030740\nSELECT count (1) from fhir.PatientIdentifier;\n--62456576\nSELECT count (1) from fhir.observation_category;\n--\n--SELECT count (1) from fhir.Observation_code;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synapseinsidepnk",
+				"poolName": "synapseinsidepnk"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

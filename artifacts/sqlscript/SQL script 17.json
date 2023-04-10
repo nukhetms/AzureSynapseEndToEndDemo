@@ -1,8 +1,8 @@
 {
-	"name": "SQL script 12",
+	"name": "SQL script 17",
 	"properties": {
 		"content": {
-			"query": "SELECT TOP (100) [Observation_id]\n,[category_code]\n,[category_display]\n,[category_system]\n FROM [fhir].[observation_category]",
+			"query": "SELECT TOP (100) [Observation_id]\n,[code_text]\n,[coding_code]\n,[coding_display]\n,[coding_system]\n FROM [fhir].[Observation_code]",
 			"metadata": {
 				"language": "sql"
 			},
