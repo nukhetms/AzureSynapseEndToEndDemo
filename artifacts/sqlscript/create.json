@@ -1,0 +1,17 @@
+{
+	"name": "create",
+	"properties": {
+		"content": {
+			"query": "observation_historic = observation_df.where(\"year(issued) >= 2016 AND year(issued) < 2021\")\nfrom pyspark.sql.functions import *\nobservation_historic_final = observation_historic.withColumn(\"year\", date_format(col(\"issued\"), \"yyyy\"))\nobservation_historic_final.write.partitionBy(\"year\")\\.mode(\"overwrite\")\\.json(observation_historic_target_location)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "fhirdbexploration",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

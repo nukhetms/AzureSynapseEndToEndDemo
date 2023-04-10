@@ -1,8 +1,8 @@
 {
-	"name": "SQL script 16",
+	"name": "Script_counts",
 	"properties": {
 		"content": {
-			"query": "SELECT TOP (100) [Claim_id]\n,[resourceType]\n,[status]\n,[billablePeriod_end]\n,[billablePeriod_start]\n,[created]\n,[patient_display]\n,[patient_id_reference]\n,[prescription_reference]\n,[provider_display]\n,[provider_org_id_reference]\n,[total_currency]\n,[total_value]\n,[use]\n FROM [fhir].[claims_main]",
+			"query": "--SELECT COUNT_BIG (*) from fhir.observation_category;\n--5624462852\n--SELECT COUNT_BIG (*) from fhir.Observation_code;\n--5767551345\nSELECT COUNT_BIG (*) from fhir.ObservationMain;\n--5624462852\n",
 			"metadata": {
 				"language": "sql"
 			},

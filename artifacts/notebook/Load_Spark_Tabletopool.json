@@ -1,0 +1,140 @@
+{
+	"name": "Load_Spark_Tabletopool",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "synsparkpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "40adf64b-a65b-4876-b97b-f1b24af403a6"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/a4c9577a-10ea-48d1-b7f5-d95279db70d6/resourceGroups/synapseinsiderrgnk/providers/Microsoft.Synapse/workspaces/synapseinsiderws/bigDataPools/synsparkpool",
+				"name": "synsparkpool",
+				"type": "Spark",
+				"endpoint": "https://synapseinsiderws.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/synsparkpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 3,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"import com.microsoft.spark.sqlanalytics\r\n",
+					"from com.microsoft.spark.sqlanalytics.Constants import Constants\r\n",
+					""
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"server_name =\"synapseserver.sql.azuresynapse.net\" --Include Nam\r\n",
+					"synapse_data_loader= \"dataloader\"\r\n",
+					"synapse_data_loader_p =\"a123strongpwd\"\r\n",
+					"staging_temp_folder ='abfss://temp@adlsdemopot.dfs.core.windows.net/staging_bc'\r\n",
+					"staging_account_key = 'djfkdjfkdjf'"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"spark_table_to_load =\"fhir.Patient_Identifier2\"\r\n",
+					"sql_table_target = 'fhir_dedicatedSQLPool.stage.Patient_Identifier'"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"Print(staging_temp_folder)\r\n",
+					"Print(staging_account_key)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df = spark.read.table(spark_table_to_load)"
+				],
+				"execution_count": null
+			}
+		]
+	}
+}
