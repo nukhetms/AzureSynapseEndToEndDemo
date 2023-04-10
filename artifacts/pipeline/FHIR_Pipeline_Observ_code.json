@@ -47,7 +47,8 @@
 							}
 						},
 						"path": "staging"
-					}
+					},
+					"parallelCopies": 6
 				},
 				"inputs": [
 					{
