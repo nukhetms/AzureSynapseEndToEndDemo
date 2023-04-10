@@ -1,5 +1,5 @@
 {
-	"name": "FHIR_Pipeline_claims_main",
+	"name": "claims_main",
 	"properties": {
 		"activities": [
 			{

@@ -1,5 +1,5 @@
 {
-	"name": "FHIR_Pipeline_Observ_component",
+	"name": "Observ_component",
 	"properties": {
 		"activities": [
 			{
