@@ -1,5 +1,5 @@
 {
-	"name": "second query without optimization",
+	"name": "second query",
 	"properties": {
 		"content": {
 			"query": "SELECT\npatient.gender AS Patient_Gender,\npatient.maritalstatus_text AS Patient_Marital_Status,\nSUM(claim.total_value) AS Sum_Of_Claim_Total_Value,\nCOUNT_BIG(claim.total_value) AS Count_of_Claims\nFROM fhir.PatientIdentifier AS patient\nINNER  JOIN\n(\nSELECT\npatient_id_reference\nFROM fhir.observation_main \nINNER JOIN fhir.observation_code\nON observation_main.observation_id = observation_code.observation_id\nWHERE\nobservation_code.code_text='Pain severity - 0-10 verbal numeric rating [Score] - Reported'\nAND observation_main.valuequantity_value IN (8,9,10)\nGROUP BY patient_id_reference\n) AS observation\nON patient.patient_id = observation.patient_id_reference\nLEFT JOIN fhir.claims_main AS claim_main\nON patient.patient_id = claim.patient_id_reference\nWHERE\ncast(claim_main.billableperiod_start_date as date) >='01-01-2020 00:00:00' AND cast(claim_main.billableperiod_start_date as date) <'12-31-2021 00:00:00'\nGROUP BY\npatient.gender,\npatient.maritalstatus_text\nORDER BY\npatient.gender,\npatient.maritalstatus_text",

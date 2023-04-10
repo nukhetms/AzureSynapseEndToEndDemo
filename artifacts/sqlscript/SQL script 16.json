@@ -2,7 +2,7 @@
 	"name": "SQL script 16",
 	"properties": {
 		"content": {
-			"query": "SELECT count (1) from fhir.observation_category;\nSELECT count (1) from fhir.Observation_code;",
+			"query": "SELECT TOP (100) [Claim_id]\n,[resourceType]\n,[status]\n,[billablePeriod_end]\n,[billablePeriod_start]\n,[created]\n,[patient_display]\n,[patient_id_reference]\n,[prescription_reference]\n,[provider_display]\n,[provider_org_id_reference]\n,[total_currency]\n,[total_value]\n,[use]\n FROM [fhir].[claims_main]",
 			"metadata": {
 				"language": "sql"
 			},

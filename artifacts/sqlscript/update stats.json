@@ -2,7 +2,7 @@
 	"name": "update stats",
 	"properties": {
 		"content": {
-			"query": "--UPDATE STATISTICS fhir.PatientIdentifier;\n\n--UPDATE STATISTICS fhir.claims_main;\n\n--UPDATE STATISTICS fhir.ClaimDiagnosis;\n\n--UPDATE STATISTICS fhir.ClaimInsurance;\n\n--UPDATE STATISTICS fhir.ClaimProcedure;\n\nUPDATE STATISTICS fhir.ObservationMain;",
+			"query": "--UPDATE STATISTICS fhir.PatientIdentifier;\n\n--UPDATE STATISTICS fhir.claims_main;\n\n--UPDATE STATISTICS fhir.ClaimDiagnosis;\n\n--UPDATE STATISTICS fhir.ClaimInsurance;\n\n--UPDATE STATISTICS fhir.ClaimProcedure;\n\n--UPDATE STATISTICS fhir.ObservationMain;THIS ONE\nUPDATE STATISTICS fhir.Observation_code; \n--UPDATE STATISTICS fhir.claims_main;\n--UPDATE STATISTICS fhir.Observation_component;\n--UPDATE STATISTICS fhir.observation_category;\n",
 			"metadata": {
 				"language": "sql"
 			},
