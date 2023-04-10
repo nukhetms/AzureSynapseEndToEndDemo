@@ -1,5 +1,5 @@
 {
-	"name": "FHIR_Pipeline4Claim_Spark_OC_Observ_category",
+	"name": "FHIR_PipelineObserv_category",
 	"properties": {
 		"activities": [
 			{

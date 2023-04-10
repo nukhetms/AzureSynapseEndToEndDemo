@@ -1,0 +1,17 @@
+{
+	"name": "update distribution",
+	"properties": {
+		"content": {
+			"query": "SET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\n\nCREATE TABLE [fhir].[PatientIdentifier]\n( \n\t[patient_id] [nvarchar](64)  NULL,\n\t[birthDate] [nvarchar](200)  NULL,\n\t[deceasedDateTime] [nvarchar](200)  NULL,\n\t[gender] [nvarchar](50)  NULL,\n\t[text] [nvarchar](1000)  NULL,\n\t[multipleBirthBoolean] [bit]  NULL,\n\t[multipleBirthInteger] [bigint]  NULL,\n\t[resourceType] [nvarchar](100)  NULL,\n\t[div] [nvarchar](max)  NULL,\n\t[status] [nvarchar](500)  NULL,\n\t[identifier.system] [nvarchar](2000)  NULL,\n\t[identifier.type.coding.code] [nvarchar](500)  NULL,\n\t[identifier.type.coding.display] [nvarchar](1000)  NULL,\n\t[identifier.type.coding.system] [nvarchar](1000)  NULL,\n\t[identifier.type.text] [nvarchar](1000)  NULL,\n\t[identifier.value] [nvarchar](640)  NULL\n)\nWITH\n(\n\tDISTRIBUTION = ROUND_ROBIN,\n\tHEAP\n)\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "synapseinsidepnk",
+				"poolName": "synapseinsidepnk"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
