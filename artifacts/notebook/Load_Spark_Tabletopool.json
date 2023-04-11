@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "40adf64b-a65b-4876-b97b-f1b24af403a6"
+				"spark.autotune.trackingId": "a24b12a3-ab20-4a2a-8048-217a321832c1"
 			}
 		},
 		"metadata": {
@@ -71,11 +71,11 @@
 					}
 				},
 				"source": [
-					"server_name =\"synapseserver.sql.azuresynapse.net\" --Include Nam\r\n",
-					"synapse_data_loader= \"dataloader\"\r\n",
+					"server_name =\"synapseinsiderws.sql.azuresynapse.net\"\r\n",
+					"synapse_data_loader= \"dataloader\" -sql admin user defined dedicated pool \r\n",
 					"synapse_data_loader_p =\"a123strongpwd\"\r\n",
-					"staging_temp_folder ='abfss://temp@adlsdemopot.dfs.core.windows.net/staging_bc'\r\n",
-					"staging_account_key = 'djfkdjfkdjf'"
+					"staging_temp_folder ='abfss://temp@adlsdemopot.dfs.core.windows.net/staging_bc' -silver layer path \r\n",
+					"staging_account_key = 'SAS KEY djfdkf-234j2-34893-dfjkld21' - AD info"
 				],
 				"execution_count": null
 			},
